@@ -1,24 +1,30 @@
-import logo from './logo.svg';
+/** @format */
+
+import { useState } from 'react';
 import './App.css';
+import Back from './components/Back';
+import Front from './components/Front';
 
 function App() {
+  const [select, setSelect] = useState(null);
+  const [finish, setFinish] = useState(false);
+
+  const handleSelect = (num) => {
+    setSelect(num);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <main className='App'>
+      {finish ? (
+        <Back select={select} />
+      ) : (
+        <Front
+          handleSelect={handleSelect}
+          select={select}
+          setFinish={setFinish}
+        />
+      )}
+    </main>
   );
 }
 
